@@ -1,4 +1,4 @@
-"use strict";  
+"use strict";
 
 window.addEventListener('load', go);
 
@@ -11,7 +11,7 @@ function go() {
   console.log('GO !');
 
   model.init({
-    items : [
+    items: [
       { text: 'À faire hier', done: true },
       { text: 'À faire aujourd\'hui', done: false },
       { text: 'À faire demain', done: false }
@@ -21,21 +21,20 @@ function go() {
   state.samUpdate(model);
 }
 
-
 actions = {
 
   addItem(data) {
     let text = document.getElementById(data.inputField).value;
-    if (text != '') {
+    if (text !== '') {
       model.samPresent({
         newItem: text
       });
     }
   },
 
-  donneItem(data){
-    model.samPresent({donneItem: data.index});
-  },
+  doneItem(data) {
+    model.samPresent({ doneItem: data.index });
+  }
 
 };
 
@@ -48,41 +47,37 @@ model = {
 
   samPresent(data) {
     const has = Object.prototype.hasOwnProperty;
-  
+
     if (has.call(data, 'newItem')) {
       let item = {
         text: data.newItem,
         done: false,
       };
-  
-      this.items.push(item);  
+
+      this.items.push(item);
     }
-  
+
     if (has.call(data, 'doneItem')) {
-      let index = data.doneItem.index;
+      let index = data.doneItem;
       if (this.items[index]) {
-        this.items[index].done = true;  
+        // Inverser l'état 'done'
+        this.items[index].done = !this.items[index].done;
       }
     }
-  
+
     state.samUpdate(this);
   }
-  
+
 };
 
 state = {
 
   samUpdate(model) {
     this.samRepresent(model);
-
   },
 
   samRepresent(model) {
-    let representation = 'Oops, should not see this...';
-
-    representation = view.normalInterface(model, this);
-
- 
+    let representation = view.normalInterface(model, this);
     view.samDisplay(representation);
   }
 };
@@ -95,22 +90,32 @@ view = {
   },
 
   normalInterface(model, state) {
-    let li_items = this.listItems(model,state);
+    let li_items = this.listItems(model, state);
     return `
       <h2> Todo List </h2>
       <input id="inputText" type="text" />
-      <button onclick="actions.addItem( {e: event, inputField:'inputText'} )">Todo</button>
+      <button onclick="actions.addItem( {e: event, inputField:'inputText'} )">Ajouter</button>
       <ul>
-      	${li_items}
+        ${li_items}
       </ul>
       `;
   },
 
   listItems(model, state) {
     let li_items = model.items.map((v, i) => 
-      `<li onclick="actions.doneItem({e:event, index:${i}})">${v.text}</li>`).join(`\n`);
+      `<li class="${v.done ? 'done' : ''}" onclick="actions.doneItem({e: event, index: ${i}})">${v.text}</li>`
+    ).join('\n');
     return li_items;
   }
   
-	
 };
+
+// Ajout du style CSS pour barrer les items terminés
+const style = document.createElement('style');
+style.innerHTML = `
+  .done {
+    text-decoration: line-through;
+    color: gray;
+  }
+`;
+document.head.appendChild(style);
