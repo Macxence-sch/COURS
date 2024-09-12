@@ -54,7 +54,7 @@ void separer_pairs_impairs(int *tab, int size){
     int gauche = 0;
     int temp;
 
-    while(gauche<droite+1){
+    while(gauche<=droite){
         
         while (tab[droite] %2 != 0)
         {
