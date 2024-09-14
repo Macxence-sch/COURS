@@ -12,6 +12,4 @@
  (define (p2 n) (p2* 1 n))
 
 
- (define (binaire n)
-   (if (< n 2) (cons n '())
-      (cons (modulo n 2) (binaire (quotient n 2)))))
+ (define (binaire n)(if (< n 2) (cons n '())(cons (modulo n 2) (binaire (quotient n 2)))))
