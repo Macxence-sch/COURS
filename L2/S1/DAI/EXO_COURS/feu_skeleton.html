@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!-- saved from url=(0059)https://maxime-masson.github.io/cours/dai/feu_skeleton.html -->
+<html lang="fr" coupert-item="9AF8D9A4E502F3784AD24272D81F0381"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .feu {
+            width: 50px;
+            height: 150px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: black;
+            margin-bottom: 5px;
+        }
+
+        .lumiere {
+            width: 30px;
+            height: 30px;
+            margin: 10px;
+            background-color: gray;
+            border-radius: 50%;
+            transition: background-color 0.5s;
+        }
+
+        .rouge {
+            background-color: red;
+        }
+
+        .orange {
+            background-color: orange;
+        }
+
+        .vert {
+            background-color: green;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="feu">
+        <div class="lumiere" id="rouge"></div>
+        <div class="lumiere" id="orange"></div>
+        <div class="lumiere" id="vert"></div>
+    </div>
+
+    <button onclick="Jaune()">Rouge</button>
+    <button onclick="vert()">Vert</button>
+
+    <script>
+        vert();
+        function Jaune(){
+            setTimeout(rouge,3000);
+            document.getElementById("orange").style.backgroundColor = "orange"; 
+            document.getElementById("rouge").style.backgroundColor = "grey"; 
+            document.getElementById("vert").style.backgroundColor = "grey"; 
+            
+        }
+
+        function rouge(){
+            
+            setTimeout(vert,5000);
+            document.getElementById("rouge").style.backgroundColor = "red";
+            document.getElementById("orange").style.backgroundColor = "grey"; 
+            document.getElementById("vert").style.backgroundColor = "grey"; 
+
+        }
+
+        function vert(){
+            setTimeout(Jaune,5000); 
+            document.getElementById("vert").style.backgroundColor = "green";
+            document.getElementById("rouge").style.backgroundColor = "grey"; 
+            document.getElementById("roange").style.backgroundColor = "grey"; 
+            
+        }
+    </script>
+
+
+
+</body></html>
