@@ -1,0 +1,3 @@
+; Compter les occurences
+
+(define (count l e)
