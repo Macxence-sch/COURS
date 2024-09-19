@@ -26,12 +26,14 @@
       <h2> Todo List </h2>
       <input id="inputText" type="text" control-id="ControlID-1" />
       <button onclick="actions.addItem( {e: event, inputField:&apos;inputText&apos;} )" control-id="ControlID-2">Todo</button>
+	  
       <ul>
       	<li>1ère chose à faire</li><li>2ème truc important</li><li>...</li>
       </ul>
       </div>
+	  <button onclick="actions.removeDoneItems()">Remove done items</button>
 	  
-	<script type="text/javascript" src="./todo2.js" />
+	<script type="text/javascript" src="./todo.js" />
 </body>
 
 </html>

@@ -36,6 +36,10 @@ actions = {
     model.samPresent({ doneItem: data.index });
   }
 
+  removeDoneItems() {
+    model.samPresent({do: 'removeDoneItems'});
+  };
+
 };
 
 model = {
@@ -44,6 +48,10 @@ model = {
   init(data) {
     this.items = data.items || [];
   },
+
+  case 'removeDoneItems':
+  this.items = this.items.filter( /* complétez le filtre */ );
+  break;    
 
   samPresent(data) {
     const has = Object.prototype.hasOwnProperty;
@@ -64,7 +72,8 @@ model = {
         this.items[index].done = !this.items[index].done;
       }
     }
-
+    
+    
     state.samUpdate(this);
   }
 
