@@ -34,6 +34,10 @@ function checkLength(str, lenMin, lenMax) {
 // Vérifie s'il n'y a que des caractères autorisés (lettres et chiffres)
 
 function checkAllowedChars(str) {
+  if (str.length == 0){
+    return false;
+  }
+
   for (let i=0; i<str.length; i = i + 1){
     if (!isLetterOrNumber(str[i])){
       return false;
