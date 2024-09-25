@@ -1,4 +1,5 @@
 (define l '( 1 2 3 3 4 4 4 4 5 5 5 6 ))
+(define i '(1 0 0 1 1 0 1))
 
 ; Compter les occurences
 
@@ -44,3 +45,31 @@
         (conv-aux (cdr l) (* 2 p)))))
 
 (define (conv i) (conv-aux i 1))
+
+
+;Valider un nombre binaire 
+
+(define (validb i)
+  (cond
+    ((null? i) #f)
+    ((and (null? (cdr i)) (= (car i) 1)) #t)
+     (else
+      (and
+       ; premiere condition : 
+       (or (zero? (car i)) (= 1 (car i)))
+       ; deuxieme condition :
+       ; La suite du "nombre" est elle meme valide
+       (validb (cdr i))))))
+
+
+;Renvoyer la liste des ocurants
+
+(define (indicocc-aux l e k)
+  (if (null? l) '()
+      (if (= e (car l)) (cons k (indicocc-aux (cdr l) e (+ k 1)))
+          (indicocc-aux (cdr l) e (+ k 1)))))
+          
+
+
+(define (indicocc l e)
+  (indicocc-aux l e 0))
