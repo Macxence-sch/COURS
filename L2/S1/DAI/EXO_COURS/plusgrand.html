@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLUS GRAND NOMBRE</title>
+</head>
+<body>
+    <p>AAAA mmeeee</p>
+    <button onclick="trouveplusgrande()">ICI POUR LE TABLEAU</button>
+    <button onclick="fusion()">ICI POUR FUSION</button>
+    <button onclick="grille()">ICI GRILLE</button>
+
+    <script>
+        
+
+        function trouveplusgrande(){
+            let tableau = [1,2,3,4,5,6,7,8,9,8,7,6,5,4,3,2,1];
+            let plsg;
+            plsg = tableau[0];
+
+            for (let i=1; i<tableau.length; i++){
+                if (tableau[i]>plsg){
+                    plsg=tableau[i];
+                }
+
+            }
+            
+            alert(plsg);
+        }
+
+
+        function fusion(){
+            let tab2 = [2,4,6,8,10];
+            let tab1 = [1,3,5,7,9];
+            let tab3 = [];
+
+            for (let i=0; i<tab1.length ; i++){
+                tab3.push(tab1[i] , tab2[i]);
+                
+            }
+
+            alert(tab3);
+        }
+
+
+        function grille(){
+            let tableau;
+
+            for (let i=0; i<5; i++){
+                for(let k=0; k<5;k++){
+                    tableau[k][i] = Math.floor(Math.random()* 100);
+                }
+            }
+
+            console.log(tableau);
+            
+        }
+
+
+    </script>
+</body>
+</html>
